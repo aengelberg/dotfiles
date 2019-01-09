@@ -61,6 +61,8 @@ This function should only modify configuration layer settings."
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
+
+     ;; Custom Layers
      no-dots
      )
 
@@ -464,6 +466,9 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  ;; `dd` and stuff should respect parens
+  (spacemacs/toggle-evil-safe-lisp-structural-editing-on-register-hooks)
+  ;; clojure custom indenting
   (with-eval-after-load 'clojure-mode
     (setq clojure-indent-style :align-arguments)
     (define-clojure-indent
