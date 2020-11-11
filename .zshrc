@@ -95,3 +95,6 @@ eval "$(fasd --init auto)"
 
 # Vault config
 export PATH="/usr/local/opt/openssl/bin:$PATH"
+
+# Doom Emacs
+export PATH="/Users/alex/git/doom-emacs/bin:$PATH"
