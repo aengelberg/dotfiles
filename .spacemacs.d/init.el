@@ -33,7 +33,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(windows-scripts
+   '(go
+     windows-scripts
      ansible
      python
      sql
@@ -64,6 +65,7 @@ This function should only modify configuration layer settings."
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
+     ;; lsp
 
      ;; Custom Layers
      no-dots
@@ -498,7 +500,26 @@ you should place your code here."
       ;; (PATCH 1)
       ;; (PUT 1)
       ;; (DELETE 1)
-      )))
+      ))
+  ;; (use-package lsp-mode
+  ;;   :ensure t
+  ;;   :commands lsp
+  ;;   :config
+  ;;   ;; add paths to your local installation of project mgmt tools, like lein
+  ;;   (setenv "PATH" (concat
+  ;;                   "/usr/local/bin" path-separator
+  ;;                   (getenv "PATH")))
+  ;;   (dolist (m '(clojure-mode
+  ;;                clojurec-mode
+  ;;                clojurescript-mode
+  ;;                clojurex-mode))
+  ;;     (add-to-list 'lsp-language-id-configuration `(,m . "clojure")))
+  ;;   :init
+  ;;   (setq lsp-enable-indentation nil)
+  ;;   (add-hook 'clojure-mode-hook #'lsp)
+  ;;   (add-hook 'clojurec-mode-hook #'lsp)
+  ;;   (add-hook 'clojurescript-mode-hook #'lsp))
+  )
 
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
