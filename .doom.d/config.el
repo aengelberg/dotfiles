@@ -55,7 +55,22 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-(setq smartparens-strict-mode t)
+;(setq smartparens-strict-mode t)
 
-;(add-hook 'clojure-mode-hook #'evil-smartparens-mode)
+(add-hook 'emacs-lisp-mode-hook #'smartparens-strict-mode)
+(add-hook 'emacs-lisp-mode-hook #'evil-cleverparens-mode)
+(add-hook 'clojure-mode-hook #'smartparens-strict-mode)
 (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
+
+;; Sets SPC k <key> to do a smartparens command and enter lisp state
+;; (Borrowed from Spacemacs)
+(use-package! evil-lisp-state
+  :init (setq evil-lisp-state-global t)
+  :config
+  (evil-lisp-state-leader "SPC k")
+  (setq evil-lisp-state-global t))
+
+;; SPC SPC = M-x, like in spacemacs
+(map!
+ :map doom-leader-map
+ "SPC" 'helm-M-x)
