@@ -73,4 +73,10 @@
 ;; SPC SPC = M-x, like in spacemacs
 (map!
  :map doom-leader-map
- "SPC" 'helm-M-x)
+ "SPC" 'counsel-M-x)
+
+;; Make recent files (that aren't buffers yet) appear in SPC b b
+(setq ivy-use-virtual-buffers t)
+
+;; Hide . and ..
+(setq ivy-extra-directories nil)
