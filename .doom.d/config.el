@@ -22,7 +22,7 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 ;;
-(setq doom-font (font-spec :family "Menlo" :size 16))
+(setq doom-font (font-spec :family "JetBrains Mono" :size 13))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -62,6 +62,7 @@
 (add-hook 'clojure-mode-hook #'smartparens-strict-mode)
 (add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
 
+
 ;; Sets SPC k <key> to do a smartparens command and enter lisp state
 ;; (Borrowed from Spacemacs)
 (use-package! evil-lisp-state
@@ -80,3 +81,14 @@
 
 ;; Hide . and ..
 (setq ivy-extra-directories nil)
+
+(map!
+ :map ivy-minibuffer-map
+ ;; TAB and RET go into the selected directory or opens the selected file
+ "RET" 'ivy-alt-done
+ "TAB" 'ivy-alt-done
+ ;; C-h goes up a dir (like spacemacs helm)
+ "C-h" 'ivy-backward-delete-char)
+
+;; Make leader key help menu show up quicker
+(setq which-key-idle-delay 0.3)
