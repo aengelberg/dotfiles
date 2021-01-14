@@ -58,9 +58,9 @@
 ;(setq smartparens-strict-mode t)
 
 (add-hook 'emacs-lisp-mode-hook #'smartparens-strict-mode)
-(add-hook 'emacs-lisp-mode-hook #'evil-cleverparens-mode)
+(add-hook 'emacs-lisp-mode-hook #'evil-smartparens-mode)
 (add-hook 'clojure-mode-hook #'smartparens-strict-mode)
-(add-hook 'clojure-mode-hook #'evil-cleverparens-mode)
+(add-hook 'clojure-mode-hook #'evil-smartparens-mode)
 
 
 ;; Sets SPC k <key> to do a smartparens command and enter lisp state
@@ -70,6 +70,26 @@
   :config
   (evil-lisp-state-leader "SPC k")
   (setq evil-lisp-state-global t))
+
+;; Tab to indent lines
+(map!
+ :mode clojure-mode
+ :mode emacs-lisp-mode
+ :ni
+ "<tab>" 'lisp-indent-line)
+
+;; Fix issue where backspacing a close paren actually deletes the close paren without deleting the open paren
+;; https://github.com/hlissner/doom-emacs/issues/4374
+(map!
+ :mode smartparens-mode
+ :i
+ "DEL" 'sp-backward-delete-char)
+
+;; Fix issue where opening parens right before a word doesn't create a close paren
+;; Caused by https://github.com/hlissner/doom-emacs/blob/develop/modules/config/default/config.el#L100-L104
+;; Because Doom "does not support strict mode" https://discord.com/channels/406534637242810369/406554085794381833/799123610312114186
+(after! smartparens
+  (sp-pair "(" nil :unless '(:rem sp-point-before-word-p)))
 
 ;; SPC SPC = M-x, like in spacemacs
 (map!
